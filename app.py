@@ -22,7 +22,7 @@ st.markdown(
 )
 
 # Project Credit
-st.markdown("#### Project by Muhammad Junaid, Hamid Shehzad, and Aneeqa")
+st.markdown("#### Project by Muhammad Junaid, Hamid Shehzad, and Aneeqa Sabir")
 
 # Title
 st.title("Arthritis Diagnosis System")
