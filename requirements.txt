@@ -1,2 +1,3 @@
-streamlit==1.25.0  # Adjust version if needed
+streamlit==1.25.0
+Pillow==9.5.0
 pytest
