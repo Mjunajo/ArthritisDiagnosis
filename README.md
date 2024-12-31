@@ -11,7 +11,7 @@ This Streamlit app helps diagnose different types of arthritis based on symptoms
 2. Click "Diagnose" to view the results.
 
 ## Deployment
-This app is deployed on [Streamlit Cloud](https://share.streamlit.io).
+This app is deployed on (https://shrill-bonus-7748.ploomberapp.io/).
 
 ## Dependencies
 - Streamlit
