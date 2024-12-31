@@ -2,6 +2,25 @@ import streamlit as st
 from knowledge_base import knowledge_base, medications
 from reasoning_engine import forward_chaining, get_medications
 
+# Apply custom CSS
+st.markdown(
+    """
+    <style>
+    /* Add borders to fields */
+    div[data-baseweb="select"] > div {
+        border: 1px solid #ccc; /* Border for input fields */
+        border-radius: 4px; /* Optional: Rounded corners */
+    }
+    /* Change color of selected symptoms */
+    div[data-baseweb="select"] > div > div > div[data-disabled="false"][aria-selected="true"] {
+        background-color: #1dca2a !important; /* Green background */
+        color: white !important; /* White text for visibility */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Project Credit
 st.markdown("#### Project by Muhammad Junaid, Hamid Shehzad, and Aneeqa")
 
@@ -54,6 +73,12 @@ if st.sidebar.button("Diagnose"):
             if meds:
                 st.subheader("Recommended Medications:")
                 for med in meds:
-                    st.write(f"- {med}")
+                    st.markdown(
+                        f"""
+                        **{med['name']}**  
+                        *{med['description']}*  
+                        **Usage:** {med['usage']}
+                        """
+                    )
         else:
             st.warning("No matching diagnosis found. Please consult a doctor.")
