@@ -1,3 +1,6 @@
+pip install --upgrade pip
+pip install --upgrade Pillow
+
 streamlit==1.25.0
-Pillow==9.5.0
+Pillow==9.4.0
 pytest
