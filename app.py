@@ -2,6 +2,13 @@ import streamlit as st
 from knowledge_base import knowledge_base, medications
 from reasoning_engine import forward_chaining, get_medications
 
+# Project Credit
+st.markdown(
+    """
+    # Project by Muhammad Junaid, Hamid Shehzad, and Aneeqa
+    """
+)
+
 # Title
 st.title("Arthritis Diagnosis System")
 
