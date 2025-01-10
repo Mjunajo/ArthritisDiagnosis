@@ -8,10 +8,155 @@ st.set_page_config(
     page_title="Arthritis Diagnosis System",
     page_icon="🏥",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://github.com/yourusername/arthritisdiagnosis',
+        'About': 'Arthritis Diagnosis System - Created by Muhammad Junaid, Hamid Shehzad, and Aneeqa Sabir'
+    }
 )
 
-# Load knowledge base and medications from JSON files
+# Custom CSS with dark theme and enhanced UI
+st.markdown("""
+    <style>
+    /* Dark theme background */
+    .stApp {
+        background-color: #0e1117;
+        color: #fafafa;
+    }
+    
+    /* Sidebar styling */
+    .css-1d391kg {
+        background-color: #1a1c23;
+    }
+    
+    /* Main content area */
+    .main {
+        background-color: #0e1117;
+        padding: 2rem;
+    }
+    
+    /* Symptom tags styling */
+    .stMultiSelect [data-baseweb="tag"] {
+        background-color: #3d5afe !important;
+        border: none !important;
+        border-radius: 20px !important;
+        padding: 5px 15px !important;
+        margin: 2px !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    /* Tag hover effect */
+    .stMultiSelect [data-baseweb="tag"]:hover {
+        background-color: #536dfe !important;
+        transform: translateY(-1px);
+    }
+    
+    /* Tag text color */
+    .stMultiSelect [data-baseweb="tag"] span {
+        color: white !important;
+    }
+    
+    /* Tag close button */
+    .stMultiSelect [data-baseweb="tag"] [role="presentation"] {
+        color: rgba(255, 255, 255, 0.8) !important;
+    }
+    
+    /* Multiselect dropdown background */
+    div[data-baseweb="select"] > div {
+        background-color: #1a1c23 !important;
+        border: 1px solid #2d303a !important;
+        border-radius: 8px !important;
+    }
+    
+    /* Button styling */
+    .stButton>button {
+        width: 100%;
+        background: linear-gradient(45deg, #3d5afe, #536dfe) !important;
+        color: white !important;
+        font-weight: bold !important;
+        border: none !important;
+        border-radius: 8px !important;
+        padding: 0.5rem 1rem !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .stButton>button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(61, 90, 254, 0.3) !important;
+    }
+    
+    /* Diagnosis box styling */
+    .diagnosis-box {
+        background-color: #1a1c23 !important;
+        padding: 1.5rem !important;
+        border-radius: 10px !important;
+        margin: 1rem 0 !important;
+        border: 1px solid #2d303a !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    /* Medication box styling */
+    .medication-box {
+        background-color: #242731 !important;
+        padding: 1.5rem !important;
+        border-radius: 10px !important;
+        margin: 0.8rem 0 !important;
+        border: 1px solid #2d303a !important;
+    }
+    
+    /* Warning text styling */
+    .warning {
+        color: #ff4d4d !important;
+        font-style: italic !important;
+    }
+    
+    /* Headers */
+    h1, h2, h3, h4, h5, h6 {
+        color: #fafafa !important;
+    }
+    
+    /* Tabs styling */
+    .stTabs [data-baseweb="tab-list"] {
+        background-color: #1a1c23 !important;
+        border-radius: 8px !important;
+        padding: 0.5rem !important;
+    }
+    
+    .stTabs [data-baseweb="tab"] {
+        color: #fafafa !important;
+        border-radius: 6px !important;
+    }
+    
+    .stTabs [aria-selected="true"] {
+        background-color: #3d5afe !important;
+    }
+    
+    /* Table styling */
+    .stDataFrame {
+        background-color: #1a1c23 !important;
+    }
+    
+    .stDataFrame td, .stDataFrame th {
+        background-color: #242731 !important;
+        color: #fafafa !important;
+    }
+    
+    /* Selected symptom tag colors - Gradient variations */
+    .stMultiSelect [data-baseweb="tag"]:nth-child(3n) {
+        background: linear-gradient(45deg, #3d5afe, #536dfe) !important;
+    }
+    
+    .stMultiSelect [data-baseweb="tag"]:nth-child(3n+1) {
+        background: linear-gradient(45deg, #536dfe, #8c9eff) !important;
+    }
+    
+    .stMultiSelect [data-baseweb="tag"]:nth-child(3n+2) {
+        background: linear-gradient(45deg, #8c9eff, #3d5afe) !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+# Load knowledge base and medications
 @st.cache_data
 def load_data():
     knowledge_base = [
@@ -82,7 +227,7 @@ def load_data():
     
     return knowledge_base, medications
 
-# Enhanced reasoning engine with confidence scoring
+# Enhanced reasoning engine
 def forward_chaining(knowledge_base, symptoms):
     inferred = set(symptoms)
     diagnoses = []
@@ -92,7 +237,7 @@ def forward_chaining(knowledge_base, symptoms):
         total_symptoms = len(rule["if"])
         if matching_symptoms > 0:
             confidence = (matching_symptoms / total_symptoms) * rule["confidence"]
-            if confidence >= 0.5:  # Minimum confidence threshold
+            if confidence >= 0.5:
                 diagnoses.append({
                     "condition": rule["then"],
                     "confidence": confidence,
@@ -102,42 +247,12 @@ def forward_chaining(knowledge_base, symptoms):
     
     return sorted(diagnoses, key=lambda x: x["confidence"], reverse=True)
 
-# Get medications with enhanced information
+# Get medications with warnings
 def get_medications(diagnosis, medications):
     meds = medications.get(diagnosis, [])
     for med in meds:
         med["warning"] = "Please consult a healthcare professional before taking any medication."
     return meds
-
-# Custom CSS with improved styling
-st.markdown("""
-    <style>
-    .main {
-        padding: 2rem;
-    }
-    .stButton>button {
-        width: 100%;
-        background-color: #ff4b4b;
-        color: white;
-        font-weight: bold;
-    }
-    .diagnosis-box {
-        padding: 1rem;
-        border-radius: 5px;
-        margin: 1rem 0;
-    }
-    .medication-box {
-        background-color: #f0f2f6;
-        padding: 1rem;
-        border-radius: 5px;
-        margin: 0.5rem 0;
-    }
-    .warning {
-        color: #ff4b4b;
-        font-style: italic;
-    }
-    </style>
-""", unsafe_allow_html=True)
 
 # Project information
 with st.sidebar:
