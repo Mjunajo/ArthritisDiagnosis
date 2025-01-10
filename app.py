@@ -5,6 +5,7 @@ import pandas as pd
 
 # Configure Streamlit page settings
 st.set_page_config(
+    
     page_title="Arthritis Diagnosis System",
     page_icon="🏥",
     layout="wide",
