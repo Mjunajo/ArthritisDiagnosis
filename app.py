@@ -286,18 +286,14 @@ def forward_chaining(knowledge_base, symptoms):
     
     return sorted(diagnoses, key=lambda x: x["confidence"], reverse=True)
 
+# Ensure medications are shown only for the diagnosed condition
 def get_medications(diagnosis, medications):
+    if not diagnosis:
+        return []  # Return an empty list if no diagnosis
     meds = medications.get(diagnosis, [])
     for med in meds:
         med["warning"] = "Please consult a healthcare professional before taking any medication."
     return meds
-
-# Project information
-with st.sidebar:
-    st.image("https://via.placeholder.com/150", caption="Arthritis Diagnosis System")
-    st.markdown("### Project Team")
-    st.markdown("- Muhammad Junaid\n- Hamid Shehzad\n- Aneeqa Sabir")
-    st.markdown("---")
 
 # Main application
 st.title("🏥 Arthritis Diagnosis System")
@@ -348,30 +344,34 @@ with tab1:
             diagnoses = forward_chaining(knowledge_base, selected_symptoms)
             
             if diagnoses:
-                for diagnosis in diagnoses:
-                    confidence_color = "green" if diagnosis["confidence"] > 0.8 else "orange"
-                    st.markdown(f"""
-                        <div class="diagnosis-box" style="border: 2px solid {confidence_color}">
-                            <h3>{diagnosis["condition"].replace("_", " ").title()}</h3>
-                            <p>Confidence: {diagnosis["confidence"]*100:.1f}%</p>
-                            <p>Matching Symptoms: {diagnosis["matching_symptoms"]}/{diagnosis["total_symptoms"]}</p>
-                        </div>
-                    """, unsafe_allow_html=True)
-                    
-                    meds = get_medications(diagnosis["condition"], medications)
-                    if meds:
-                        st.markdown("#### Recommended Medications:")
-                        for med in meds:
-                            st.markdown(f"""
-                                <div class="medication-box">
-                                    <h4>{med["name"]}</h4>
-                                    <p><em>{med["description"]}</em></p>
-                                    <p><strong>Usage:</strong> {med["usage"]}</p>
-                                    <p class="warning">{med["warning"]}</p>
-                                </div>
-                            """, unsafe_allow_html=True)
+                # Only display the top diagnosis for medications
+                top_diagnosis = diagnoses[0]
+                confidence_color = "green" if top_diagnosis["confidence"] > 0.8 else "orange"
+                st.markdown(f"""
+                    <div class="diagnosis-box" style="border: 2px solid {confidence_color}">
+                        <h3>{top_diagnosis["condition"].replace("_", " ").title()}</h3>
+                        <p>Confidence: {top_diagnosis["confidence"]*100:.1f}%</p>
+                        <p>Matching Symptoms: {top_diagnosis["matching_symptoms"]}/{top_diagnosis["total_symptoms"]}</p>
+                    </div>
+                """, unsafe_allow_html=True)
+
+                meds = get_medications(top_diagnosis["condition"], medications)
+                if meds:
+                    st.markdown("#### Recommended Medications:")
+                    for med in meds:
+                        st.markdown(f"""
+                            <div class="medication-box">
+                                <h4>{med["name"]}</h4>
+                                <p><em>{med["description"]}</em></p>
+                                <p><strong>Usage:</strong> {med["usage"]}</p>
+                                <p class="warning">{med["warning"]}</p>
+                            </div>
+                        """, unsafe_allow_html=True)
+                else:
+                    st.warning("No medications available for this diagnosis.")
             else:
                 st.warning("No definitive diagnosis found. Please consult a healthcare professional.")
+
 
 with tab2:
     st.markdown("""
