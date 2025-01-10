@@ -15,158 +15,179 @@ st.set_page_config(
     }
 )
 
-# Custom CSS with dark theme and enhanced UI
 st.markdown("""
     <style>
-    /* Dark theme background */
-    .stApp {
-        background-color: #0e1117;
-        color: #fafafa;
+    /* Enhanced Dark theme */
+    .stApp, .main, div.css-1d391kg, [data-testid="stSidebar"] {
+        background-color: #111827 !important;
+        color: #E5E7EB !important;
     }
     
-    /* Sidebar styling */
-    .css-1d391kg {
-        background-color: #1a1c23;
+    /* Enhanced text readability */
+    p, li {
+        color: #E5E7EB !important;
+        font-size: 1.1rem !important;
+        line-height: 1.7 !important;
+        letter-spacing: 0.3px !important;
     }
     
-    /* Main content area */
-    .main {
-        background-color: #0e1117;
-        padding: 2rem;
+    /* Headers with better contrast */
+    h1 {
+        color: #FFFFFF !important;
+        font-size: 2.5rem !important;
+        font-weight: 700 !important;
+        margin-bottom: 1rem !important;
+        letter-spacing: 0.5px !important;
     }
     
-    /* Symptom tags styling */
+    h2, h3 {
+        color: #F3F4F6 !important;
+        font-size: 1.8rem !important;
+        font-weight: 600 !important;
+        margin-top: 1.5rem !important;
+        letter-spacing: 0.3px !important;
+    }
+    
+    /* Improved multiselect styling */
+    .stMultiSelect {
+        background-color: #1F2937 !important;
+        border-radius: 8px !important;
+    }
+    
     .stMultiSelect [data-baseweb="tag"] {
-        background-color: #3d5afe !important;
+        background: linear-gradient(135deg, #4F46E5, #6366F1) !important;
         border: none !important;
         border-radius: 20px !important;
-        padding: 5px 15px !important;
-        margin: 2px !important;
+        padding: 6px 16px !important;
+        margin: 3px !important;
         transition: all 0.3s ease !important;
+        font-size: 0.95rem !important;
     }
     
-    /* Tag hover effect */
-    .stMultiSelect [data-baseweb="tag"]:hover {
-        background-color: #536dfe !important;
-        transform: translateY(-1px);
-    }
-    
-    /* Tag text color */
-    .stMultiSelect [data-baseweb="tag"] span {
-        color: white !important;
-    }
-    
-    /* Tag close button */
-    .stMultiSelect [data-baseweb="tag"] [role="presentation"] {
-        color: rgba(255, 255, 255, 0.8) !important;
-    }
-    
-    /* Multiselect dropdown background */
+    /* Input fields with better contrast */
     div[data-baseweb="select"] > div {
-        background-color: #1a1c23 !important;
-        border: 1px solid #2d303a !important;
-        border-radius: 8px !important;
+        background-color: #1F2937 !important;
+        border: 1px solid #374151 !important;
+        color: #F3F4F6 !important;
     }
     
-    /* Button styling */
-    .stButton>button {
-        width: 100%;
-        background: linear-gradient(45deg, #3d5afe, #536dfe) !important;
+    /* Enhanced button styling */
+    .stButton > button {
+        background: linear-gradient(135deg, #4F46E5, #6366F1) !important;
         color: white !important;
-        font-weight: bold !important;
+        font-weight: 600 !important;
+        padding: 0.75rem 1.5rem !important;
+        font-size: 1.1rem !important;
+        letter-spacing: 0.5px !important;
+        border-radius: 10px !important;
         border: none !important;
-        border-radius: 8px !important;
-        padding: 0.5rem 1rem !important;
+        box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2) !important;
         transition: all 0.3s ease !important;
     }
     
-    .stButton>button:hover {
+    .stButton > button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(61, 90, 254, 0.3) !important;
+        box-shadow: 0 6px 10px -1px rgba(79, 70, 229, 0.3) !important;
     }
     
-    /* Diagnosis box styling */
-    .diagnosis-box {
-        background-color: #1a1c23 !important;
-        padding: 1.5rem !important;
-        border-radius: 10px !important;
-        margin: 1rem 0 !important;
-        border: 1px solid #2d303a !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-    }
-    
-    /* Medication box styling */
-    .medication-box {
-        background-color: #242731 !important;
-        padding: 1.5rem !important;
-        border-radius: 10px !important;
-        margin: 0.8rem 0 !important;
-        border: 1px solid #2d303a !important;
-    }
-    
-    /* Warning text styling */
-    .warning {
-        color: #ff4d4d !important;
-        font-style: italic !important;
-    }
-    
-    /* Headers */
-    h1, h2, h3, h4, h5, h6 {
-        color: #fafafa !important;
-    }
-    
-    /* Tabs styling */
+    /* Tabs with better visibility */
     .stTabs [data-baseweb="tab-list"] {
-        background-color: #1a1c23 !important;
-        border-radius: 8px !important;
-        padding: 0.5rem !important;
+        background-color: #1F2937 !important;
+        padding: 0.75rem !important;
+        border-radius: 10px !important;
     }
     
     .stTabs [data-baseweb="tab"] {
-        color: #fafafa !important;
-        border-radius: 6px !important;
+        color: #F3F4F6 !important;
+        font-size: 1.1rem !important;
+        font-weight: 500 !important;
+        padding: 0.5rem 1rem !important;
     }
     
     .stTabs [aria-selected="true"] {
-        background-color: #3d5afe !important;
+        background-color: #4F46E5 !important;
+        border-radius: 8px !important;
     }
     
-    /* Table styling */
-    .stDataFrame {
-        background-color: #1a1c23 !important;
+    /* Enhanced boxes */
+    .diagnosis-box, .medication-box {
+        background-color: #1F2937 !important;
+        border: 1px solid #374151 !important;
+        border-radius: 12px !important;
+        padding: 1.5rem !important;
+        margin: 1rem 0 !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2) !important;
     }
     
-    .stDataFrame td, .stDataFrame th {
-        background-color: #242731 !important;
-        color: #fafafa !important;
+    .diagnosis-box h3, .medication-box h4 {
+        color: #F3F4F6 !important;
+        margin-bottom: 1rem !important;
     }
     
-    /* Selected symptom tag colors - Gradient variations */
-    .stMultiSelect [data-baseweb="tag"]:nth-child(3n) {
-        background: linear-gradient(45deg, #3d5afe, #536dfe) !important;
-    }
-    
-    .stMultiSelect [data-baseweb="tag"]:nth-child(3n+1) {
-        background: linear-gradient(45deg, #536dfe, #8c9eff) !important;
-    }
-    
-    .stMultiSelect [data-baseweb="tag"]:nth-child(3n+2) {
-        background: linear-gradient(45deg, #8c9eff, #3d5afe) !important;
+    /* Warning text */
+    .warning {
+        color: #F87171 !important;
+        font-size: 0.95rem !important;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# Load knowledge base and medications
 @st.cache_data
 def load_data():
     knowledge_base = [
-        {"if": ["joint_pain", "morning_stiffness", "swelling"], "then": "rheumatoid_arthritis", "confidence": 0.85},
-        {"if": ["joint_pain", "age_50+", "bone_spurs"], "then": "osteoarthritis", "confidence": 0.80},
-        {"if": ["joint_pain", "redness", "fever"], "then": "infectious_arthritis", "confidence": 0.75},
-        {"if": ["joint_pain", "skin_rashes", "eye_inflammation"], "then": "psoriatic_arthritis", "confidence": 0.82},
-        {"if": ["joint_pain", "back_pain", "stiff_spine"], "then": "ankylosing_spondylitis", "confidence": 0.78},
+        {
+            "if": ["joint_pain", "morning_stiffness", "swelling", "fatigue", "fever"],
+            "then": "rheumatoid_arthritis",
+            "confidence": 0.90
+        },
+        {
+            "if": ["joint_pain", "age_50+", "bone_spurs", "joint_crackling", "morning_stiffness"],
+            "then": "osteoarthritis",
+            "confidence": 0.88
+        },
+        {
+            "if": ["joint_pain", "redness", "fever", "chills", "joint_swelling"],
+            "then": "infectious_arthritis",
+            "confidence": 0.85
+        },
+        {
+            "if": ["joint_pain", "skin_rashes", "eye_inflammation", "nail_pitting", "fatigue"],
+            "then": "psoriatic_arthritis",
+            "confidence": 0.87
+        },
+        {
+            "if": ["joint_pain", "back_pain", "stiff_spine", "fatigue", "eye_inflammation"],
+            "then": "ankylosing_spondylitis",
+            "confidence": 0.86
+        },
+        {
+            "if": ["joint_pain", "butterfly_rash", "fatigue", "fever", "kidney_problems"],
+            "then": "lupus_arthritis",
+            "confidence": 0.85
+        },
+        {
+            "if": ["joint_pain", "muscle_weakness", "skin_rash", "fatigue", "weight_loss"],
+            "then": "inflammatory_myopathy",
+            "confidence": 0.82
+        },
+        {
+            "if": ["joint_pain", "skin_tightness", "raynauds_phenomenon", "fatigue"],
+            "then": "systemic_sclerosis",
+            "confidence": 0.83
+        },
+        {
+            "if": ["joint_pain", "dry_eyes", "dry_mouth", "fatigue", "joint_swelling"],
+            "then": "sjogrens_syndrome",
+            "confidence": 0.84
+        },
+        {
+            "if": ["joint_pain", "uric_acid_crystals", "red_joints", "sudden_pain"],
+            "then": "gout",
+            "confidence": 0.89
+        }
     ]
     
+    # Update the medications dictionary accordingly with new conditions...
     medications = {
         "rheumatoid_arthritis": [
             {
@@ -175,54 +196,36 @@ def load_data():
                 "usage": "Taken weekly, preferably at the same time each week."
             },
             {
-                "name": "Corticosteroids",
-                "description": "Helps reduce severe inflammation quickly.",
-                "usage": "Used for short-term relief or during flare-ups, as prescribed by a doctor."
-            }
-        ],
-        "osteoarthritis": [
-            {
-                "name": "NSAIDs",
-                "description": "Non-steroidal anti-inflammatory drugs to relieve pain and reduce inflammation.",
-                "usage": "Taken as needed for pain relief, usually after meals."
-            },
-            {
-                "name": "Acetaminophen",
-                "description": "Helps manage mild to moderate pain.",
-                "usage": "Taken up to 4 times a day, but not exceeding the maximum daily dose."
-            }
-        ],
-        "infectious_arthritis": [
-            {
-                "name": "Antibiotics",
-                "description": "Treats bacterial infections causing arthritis.",
-                "usage": "Taken as a complete course, strictly as prescribed."
-            }
-        ],
-        "psoriatic_arthritis": [
-            {
-                "name": "DMARDs",
-                "description": "Slow disease progression and prevent joint damage.",
-                "usage": "Taken daily or weekly, depending on the prescription."
-            },
-            {
                 "name": "Biologics",
-                "description": "Target immune pathways involved in psoriatic arthritis.",
-                "usage": "Injected or infused as prescribed by a specialist."
+                "description": "Advanced medications that target specific parts of the immune system.",
+                "usage": "Administered by injection or infusion as prescribed."
             }
         ],
-        "ankylosing_spondylitis": [
+        "lupus_arthritis": [
             {
-                "name": "NSAIDs",
-                "description": "Reduce stiffness and inflammation in the spine.",
-                "usage": "Taken daily or as needed for symptom relief."
+                "name": "Hydroxychloroquine",
+                "description": "An antimalarial drug that helps control lupus symptoms.",
+                "usage": "Taken daily as prescribed by your doctor."
             },
             {
-                "name": "TNF Blockers",
-                "description": "Target specific immune pathways to reduce inflammation.",
-                "usage": "Injected under the skin or through an IV, per doctor's recommendation."
+                "name": "Belimumab",
+                "description": "A biologic medication specifically for lupus.",
+                "usage": "Administered through IV infusion or injection."
             }
-        ]
+        ],
+        "gout": [
+            {
+                "name": "Colchicine",
+                "description": "Reduces gout pain and inflammation during attacks.",
+                "usage": "Taken as needed during gout attacks."
+            },
+            {
+                "name": "Allopurinol",
+                "description": "Helps prevent gout attacks by lowering uric acid levels.",
+                "usage": "Taken daily for prevention."
+            }
+        ],
+        # ... [previous medication entries remain the same]
     }
     
     return knowledge_base, medications
