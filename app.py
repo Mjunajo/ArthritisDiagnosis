@@ -21,6 +21,65 @@ def load_data():
         {"if": ["joint_pain", "skin_rashes", "eye_inflammation"], "then": "psoriatic_arthritis", "confidence": 0.82},
         {"if": ["joint_pain", "back_pain", "stiff_spine"], "then": "ankylosing_spondylitis", "confidence": 0.78},
     ]
+    
+    medications = {
+        "rheumatoid_arthritis": [
+            {
+                "name": "Methotrexate",
+                "description": "A disease-modifying drug that reduces inflammation and prevents joint damage.",
+                "usage": "Taken weekly, preferably at the same time each week."
+            },
+            {
+                "name": "Corticosteroids",
+                "description": "Helps reduce severe inflammation quickly.",
+                "usage": "Used for short-term relief or during flare-ups, as prescribed by a doctor."
+            }
+        ],
+        "osteoarthritis": [
+            {
+                "name": "NSAIDs",
+                "description": "Non-steroidal anti-inflammatory drugs to relieve pain and reduce inflammation.",
+                "usage": "Taken as needed for pain relief, usually after meals."
+            },
+            {
+                "name": "Acetaminophen",
+                "description": "Helps manage mild to moderate pain.",
+                "usage": "Taken up to 4 times a day, but not exceeding the maximum daily dose."
+            }
+        ],
+        "infectious_arthritis": [
+            {
+                "name": "Antibiotics",
+                "description": "Treats bacterial infections causing arthritis.",
+                "usage": "Taken as a complete course, strictly as prescribed."
+            }
+        ],
+        "psoriatic_arthritis": [
+            {
+                "name": "DMARDs",
+                "description": "Slow disease progression and prevent joint damage.",
+                "usage": "Taken daily or weekly, depending on the prescription."
+            },
+            {
+                "name": "Biologics",
+                "description": "Target immune pathways involved in psoriatic arthritis.",
+                "usage": "Injected or infused as prescribed by a specialist."
+            }
+        ],
+        "ankylosing_spondylitis": [
+            {
+                "name": "NSAIDs",
+                "description": "Reduce stiffness and inflammation in the spine.",
+                "usage": "Taken daily or as needed for symptom relief."
+            },
+            {
+                "name": "TNF Blockers",
+                "description": "Target specific immune pathways to reduce inflammation.",
+                "usage": "Injected under the skin or through an IV, per doctor's recommendation."
+            }
+        ]
+    }
+    
     return knowledge_base, medications
 
 # Enhanced reasoning engine with confidence scoring
