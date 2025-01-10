@@ -15,7 +15,7 @@ st.set_page_config(
         'About': 'Arthritis Diagnosis System - Created by Muhammad Junaid, Hamid Shehzad, and Aneeqa Sabir'
     }
 )
-st.markdown("####AI Project by Muhammad Junaid, Hamid Shehzad, and Aneeqa Sabir")
+st.markdown("AI Project by Muhammad Junaid, Hamid Shehzad, and Aneeqa Sabir")
 st.markdown("""
     <style>
     /* Enhanced text readability */
