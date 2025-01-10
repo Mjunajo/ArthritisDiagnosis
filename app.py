@@ -87,7 +87,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# The rest of the code remains the same...
 @st.cache_data
 def load_data():
     knowledge_base = [
@@ -156,6 +155,54 @@ def load_data():
                 "usage": "Administered by injection or infusion as prescribed."
             }
         ],
+        "osteoarthritis": [
+            {
+                "name": "Acetaminophen",
+                "description": "Pain reliever that helps manage osteoarthritis pain.",
+                "usage": "Taken as needed for pain relief."
+            },
+            {
+                "name": "NSAIDs",
+                "description": "Anti-inflammatory medications that reduce pain and swelling.",
+                "usage": "Taken daily or as needed according to prescription."
+            }
+        ],
+        "infectious_arthritis": [
+            {
+                "name": "Antibiotics",
+                "description": "Treats the underlying infection causing the arthritis.",
+                "usage": "Course prescribed by doctor, usually for several weeks."
+            },
+            {
+                "name": "Anti-inflammatory medications",
+                "description": "Helps reduce joint inflammation and pain.",
+                "usage": "Taken as prescribed alongside antibiotics."
+            }
+        ],
+        "psoriatic_arthritis": [
+            {
+                "name": "DMARDs",
+                "description": "Disease-modifying drugs that slow joint damage.",
+                "usage": "Regular dosing as prescribed by rheumatologist."
+            },
+            {
+                "name": "TNF Inhibitors",
+                "description": "Biologics that target specific inflammation pathways.",
+                "usage": "Injections or infusions on a set schedule."
+            }
+        ],
+        "ankylosing_spondylitis": [
+            {
+                "name": "NSAIDs",
+                "description": "First-line treatment for pain and stiffness.",
+                "usage": "Regular dosing to maintain anti-inflammatory effect."
+            },
+            {
+                "name": "TNF Blockers",
+                "description": "Biological medications for severe cases.",
+                "usage": "Regular injections as prescribed."
+            }
+        ],
         "lupus_arthritis": [
             {
                 "name": "Hydroxychloroquine",
@@ -166,6 +213,42 @@ def load_data():
                 "name": "Belimumab",
                 "description": "A biologic medication specifically for lupus.",
                 "usage": "Administered through IV infusion or injection."
+            }
+        ],
+        "inflammatory_myopathy": [
+            {
+                "name": "Corticosteroids",
+                "description": "Reduces inflammation in muscles and joints.",
+                "usage": "Taken daily, dose may be tapered over time."
+            },
+            {
+                "name": "Immunosuppressants",
+                "description": "Helps control the immune system response.",
+                "usage": "Regular dosing as prescribed by specialist."
+            }
+        ],
+        "systemic_sclerosis": [
+            {
+                "name": "Immunosuppressants",
+                "description": "Helps manage autoimmune aspects of the condition.",
+                "usage": "Taken regularly as prescribed."
+            },
+            {
+                "name": "Vasodilators",
+                "description": "Improves circulation and reduces Raynaud's symptoms.",
+                "usage": "Taken daily or as needed for symptoms."
+            }
+        ],
+        "sjogrens_syndrome": [
+            {
+                "name": "Hydroxychloroquine",
+                "description": "Helps manage joint pain and fatigue.",
+                "usage": "Daily oral medication as prescribed."
+            },
+            {
+                "name": "Pilocarpine",
+                "description": "Helps with dry mouth and eyes symptoms.",
+                "usage": "Taken multiple times daily as needed."
             }
         ],
         "gout": [
